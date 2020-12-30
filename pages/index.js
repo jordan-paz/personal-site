@@ -2,8 +2,8 @@ import { initializeApollo } from "../apolloClient";
 import { gql } from "@apollo/client";
 import HomePage from "../components/pages/Home";
 
-export default function Home({ posts, doodle }) {
-  return <HomePage posts={posts} doodle={doodle} />;
+export default function Home({ posts, drawing }) {
+  return <HomePage posts={posts} drawing={drawing} />;
 }
 
 export async function getStaticProps() {
@@ -21,9 +21,9 @@ export async function getStaticProps() {
     }
   `;
 
-  const doodlesQuery = gql`
+  const drawingsQuery = gql`
     query {
-      allDoodle(sort: { publishedAt: DESC }, limit: 1) {
+      allDrawing(sort: { publishedAt: DESC }, limit: 1) {
         title
         medium
         publishedAt
@@ -37,14 +37,14 @@ export async function getStaticProps() {
   `;
 
   const { data: postsData } = await apolloClient.query({ query: postsQuery });
-  const { data: doodlesData } = await apolloClient.query({
-    query: doodlesQuery,
+  const { data: drawingsData } = await apolloClient.query({
+    query: drawingsQuery,
   });
 
   return {
     props: {
       posts: postsData.allPost,
-      doodle: doodlesData.allDoodle[0],
+      drawing: drawingsData.allDrawing[0],
     },
   };
 }

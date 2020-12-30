@@ -2,7 +2,7 @@ import Layout from "../Layout";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function HomePage({ doodle, posts }) {
+export default function HomePage({ drawing, posts }) {
   // console.log(props);
 
   return (
@@ -29,14 +29,14 @@ export default function HomePage({ doodle, posts }) {
         </p>
       </div>
 
-      {/* LATEST DOODLE */}
+      {/* LATEST DRAWING */}
       <div className="mt-20">
-        <h4 className="mb-4">Latest Doodle</h4>
-        <Image src={doodle.image.asset.url} width="325" height="325" />
+        <h4 className="mb-4">Latest Drawing</h4>
+        <Image src={drawing.image.asset.url} width="325" height="325" />
         <div className="mt-4">
           <Link href="/">
             <a className="text-orange underline font-semibold">
-              View all Doodles
+              View all Drawings
             </a>
           </Link>
         </div>
